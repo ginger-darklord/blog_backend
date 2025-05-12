@@ -4,8 +4,6 @@ import com.example.blog_backend.persistence.entities.Blog;
 import com.example.blog_backend.persistence.repositories.BlogRepository;
 import com.example.blog_backend.service.BlogService;
 import com.example.blog_backend.service.dtos.BlogDto;
-import com.example.blog_backend.service.dtos.UserDto;
-import com.example.blog_backend.service.mapper.BlogMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,9 +42,10 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public void deleteBlog(Long id) {
-        Blog existingEntity = blogRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Blog post with this id has not been found"));
-        blogRepository.delete(existingEntity);
+    public void deleteBlog(String id) {
+        blogRepository.unsafeDeleteById(id);
+        //Blog existingEntity = blogRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Blog post with this id has not been found"));
+        //blogRepository.delete(existingEntity);
     }
 
     @Override

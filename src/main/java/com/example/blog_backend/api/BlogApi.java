@@ -3,7 +3,6 @@ package com.example.blog_backend.api;
 import com.example.blog_backend.persistence.entities.Blog;
 import com.example.blog_backend.service.BlogService;
 import com.example.blog_backend.service.dtos.BlogDto;
-import com.example.blog_backend.service.dtos.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +27,11 @@ public class BlogApi {
         return ResponseEntity.status(HttpStatus.CREATED).body("Blog created successfully");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     public void updateBlog(@PathVariable Long id, @RequestBody BlogDto blog) { blogService.updateBlog(id, blog); }
 
-    @DeleteMapping("/delete")
-    public void deleteBlog(@PathVariable Long id) { blogService.deleteBlog(id); }
+    @DeleteMapping("/delete/{id}")
+    public void deleteBlog(@PathVariable String id) { blogService.deleteBlog(id); }
 
     @GetMapping("/all")
     public List<Blog> getAllBlogs() {

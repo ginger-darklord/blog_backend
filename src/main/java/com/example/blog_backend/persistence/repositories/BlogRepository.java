@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BlogRepository extends JpaRepository<Blog, Long> {
-    List<Blog> findByTitle(String title);
+public interface BlogRepository extends JpaRepository<Blog, Long> , UnsafeBlogRepository{
+//    List<Blog> findByTitle(String title);
 }
